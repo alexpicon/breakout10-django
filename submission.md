@@ -1,4 +1,4 @@
-# Breakout 10 — Django + Salesforce
+# Breakout 10 - Django + Salesforce
 
 Alex Picon, CPSC 5240, May 6, 2026
 
@@ -6,32 +6,32 @@ Alex Picon, CPSC 5240, May 6, 2026
 
 ## Part 1: Salesforce
 
-What Salesforce did right was bet on a delivery model the rest of the industry dismissed. In 1999, enterprise CRM meant a million-dollar Siebel install, on-prem servers, and a long upgrade cycle. Marc Benioff's bet was that a browser and an internet connection were enough — no install, no hardware, monthly subscription. Siebel called them "an ant at the picnic" and Salesforce had a multi-year head start in a category they were defining. They reinforced that with three plays: the "No Software" guerrilla marketing (including showing up to protest Siebel's own conference), Dreamforce as an annual cultural moment, and the 1-1-1 philanthropy pledge made when there was nothing to give yet. Then in 2005 they shipped AppExchange and turned the product into a platform other companies could build on, which is what actually locked customers in. Acquisitions (ExactTarget, Tableau, MuleSoft, Slack) extended the surface without abandoning the SaaS thesis, and the multi-tenant cloud architecture on top of Oracle let them scale economically while keeping each customer isolated through metadata, Apex, and Visualforce.
+The biggest thing Salesforce got right was timing. In 1999 enterprise CRM meant a Siebel install that cost millions, lived on your own servers, and broke every time you tried to upgrade it. Marc Benioff said you don't need any of that, you just need a browser and a subscription. The competition didn't take it seriously and called Salesforce "an ant at the picnic," which gave them a couple of years to lock in customers in a category they were basically inventing. The marketing helped too. The "No Software" campaign was loud, Dreamforce turned into a yearly event people actually wanted to go to, and the 1-1-1 philanthropy pledge gave the brand a story before they had revenue to back it up. The acquisitions later on (ExactTarget, Tableau, MuleSoft, Slack) and the AppExchange in 2005 turned Salesforce from one product into a platform other companies could build on, which is what really kept customers from leaving.
 
-If I could go back and talk to Benioff, I'd push him on two things. First, fix developer ergonomics earlier. Apex and Visualforce are a moat, but they're also the reason the Salesforce talent pool is permanently thin — every new engineer learns JavaScript and Python before Apex, so customers pay a premium for scarce Salesforce devs. Going harder on Lightning Web Components and standards-based JavaScript years sooner would have widened the pipeline of people willing to build on the platform. Second, get ahead of the trust story before regulators force it. The 2019 zero-effective-tax-rate headline and the Backpage.com lawsuit both hurt the brand more than they had to, and the steady "Salesforce is too expensive" complaint from mid-market customers has been free advertising for HubSpot. Published acceptable-use enforcement, simpler pricing tiers, and clear AI data-handling commitments would have made it harder for competitors to position themselves as the friendlier alternative.
+If I could give Benioff advice today, I'd push him on two things. The first is developer experience. Apex and Visualforce are great for Salesforce because they keep customers locked in, but they're awful for engineers because nobody learns Apex unless they have to, and that means the talent pool stays small and expensive. Pushing harder and earlier on Lightning Web Components, or really anything that looks like normal JavaScript, would have made it way easier to hire. The second is the trust story. The 2019 zero-tax-rate headlines and the Backpage lawsuit hurt the brand more than they had to, and the "Salesforce is too expensive" complaint from smaller customers has basically been free marketing for HubSpot for years. If they had been more public about pricing, acceptable use, and what they do with customer data, competitors wouldn't have such an easy time selling against them.
 
 ---
 
 ## Part 2: Speaker Feedback
 
-The lecture on how Salesforce became dominant was useful because it tied the dominance back to specific moves instead of waving at "good execution." The structure was clean: brief history, the SaaS pivot, the marketing and platform plays (No Software, Dreamforce, 1-1-1, AppExchange), then the architecture (multi-tenant cloud on Oracle, metadata-driven runtime, Apex + Visualforce) and the language stack (Java, Apex, JavaScript/LWC, SQL, HTML/CSS, Aura). Pairing the business strategy with the technical stack on the same deck is the right call for a software engineering class — it makes the connection between business model and architecture explicit. The "Languages" slide in particular was a payoff: it shows why a Salesforce engineer's day-to-day looks different from a generic web developer's, and why the proprietary surface is both a moat and a hiring constraint.
+The lecture on how Salesforce became dominant was good because it actually explained the strategy instead of just saying they were innovative. The slides walked through the history first, then the SaaS pivot, then the marketing moves (No Software, Dreamforce, 1-1-1, AppExchange), and finally the architecture and language stack. I liked that the architecture slide and the languages slide were in the same deck as the business strategy. A lot of classes treat strategy and code like two different topics, and this one made the point that the multi-tenant cloud architecture and the Apex/Visualforce stack are the reason Salesforce could scale at all. The languages slide was probably my favorite, because it makes it obvious why a Salesforce engineer's job looks nothing like a normal web dev job.
 
-The thing I'd add is one slide on failure modes. The Salesforce playbook worked in 1999 because cloud was a real differentiator; in 2026 it isn't, so a SaaS startup copying this strategy today needs a different wedge. A side-by-side with HubSpot's microservices stack or Dynamics' Microsoft-ecosystem play would also help, because right now the architecture slide reads like "this is how SaaS works" instead of "this was Salesforce's 1999 answer." Last thing — the acquisitions list (Heroku, Tableau, Slack) was set up but not graded. A quick scorecard of which acquisitions paid off and which are still question marks would turn it from a list into a decision-making framework. Overall it was one of the more concrete strategy-meets-architecture lectures of the quarter.
+What I'd add is some context on what doesn't carry over. The Salesforce playbook worked in 1999 because cloud was new. In 2026 it isn't, so a startup trying to copy this strategy today has to find a different angle. A comparison with HubSpot or Microsoft Dynamics would help here, since right now the architecture slide kind of reads as "this is how SaaS works" instead of "this is how Salesforce did SaaS in 1999." The other thing I'd want is a quick take on the acquisitions list (Heroku, Tableau, Slack). The slide listed them but didn't really say which ones paid off and which ones are still question marks, and that would be useful for thinking about M&A in general. Other than that, it was one of the better lectures of the quarter.
 
 ---
 
 ## Part 3: Python/Django Lab
 
-### a. Steps 1–4 — done
+### a. Steps 1-4 - done
 
-Setup ran on macOS instead of Ubuntu, so I skipped the `apt` step and used `python3 -m venv venv` directly. Everything else from steps 1–4 worked.
+I'm on macOS instead of Ubuntu so I skipped the `apt` step and just used `python3 -m venv venv` directly. Everything else worked.
 
 | Step | What I did | Result |
 |---|---|---|
-| 1. Environment | Created `Breakout10/`, set up venv, installed Django 6.0.5 and gunicorn, opened in VS Code | ✅ |
-| 2. Project + App | `django-admin startproject mysite`, then `python manage.py startapp main` inside `mysite/` | ✅ |
-| 3. MVC | Added `Message` model in `main/models.py`, registered it in `admin.py`, wrote the `home` view exactly as in the spec, wired URL routing in `mysite/urls.py`. Ran `makemigrations` and `migrate` | ✅ |
-| 4. GitHub | `.gitignore` and `requirements.txt` are in the repo root, ready for `git init` → `commit` → `push` | ✅ |
+| 1. Environment | Made `Breakout10/`, set up venv, installed Django 6.0.5 + gunicorn, opened in VS Code | OK |
+| 2. Project + App | `django-admin startproject mysite`, then `python manage.py startapp main` inside it | OK |
+| 3. MVC | Added the `Message` model in `main/models.py`, registered it in `admin.py`, wrote the `home` view from the spec, and wired up URL routing in `mysite/urls.py`. Ran `makemigrations` and `migrate` | OK |
+| 4. GitHub | Added `.gitignore` and `requirements.txt`, then `git init` / `commit` / `push` to a public repo | OK |
 
 To run it locally:
 
@@ -40,22 +40,51 @@ cd Breakout10
 source venv/bin/activate
 cd mysite
 python manage.py runserver
-# http://127.0.0.1:8000/        → message list
-# http://127.0.0.1:8000/about/  → About page
-# http://127.0.0.1:8000/admin/  → admin
+# http://127.0.0.1:8000/        -> message list
+# http://127.0.0.1:8000/about/  -> About page
+# http://127.0.0.1:8000/admin/  -> admin
 ```
 
-Seeded three sample `Message` rows from the Django shell to confirm the home view actually loops over real DB data instead of returning a hardcoded string.
+I seeded three sample `Message` rows from the Django shell so the home view actually has something to loop over instead of returning an empty page.
 
 ### b. About page
 
-Added a second URL (`/about/`) mapped to a new `about` view that renders `main/templates/main/about.html`. The page describes the project, maps each layer (Model, View, Template, URL routing) onto a real file in the repo, and has a small nav back to Home and Admin.
+Added a second URL (`/about/`) that maps to a new `about` view. The view renders `main/templates/main/about.html`, which describes what each layer of the project does (Model, View, Template, URL routing) and points at the actual file for each one. There's a small nav bar at the top to jump back to Home or Admin.
 
-| File | Purpose |
+| File | What it shows |
 |---|---|
-| `screenshots/home.png` | `/` rendering the seeded Message list |
-| `screenshots/about.png` | `/about/` rendering the styled About page |
+| `screenshots/home.png` | `/` showing the seeded Message list |
+| `screenshots/about.png` | `/about/` showing the styled About page |
 
-### c. Extra credit
+### c. Extra credit - Render deploy
 
-(See separate write-up if I get to the Render deploy.)
+Live URL: https://breakout10-django.onrender.com
+
+| Page | URL | Status |
+|---|---|---|
+| Home (message list) | https://breakout10-django.onrender.com/ | 200 |
+| About | https://breakout10-django.onrender.com/about/ | 200 |
+
+Deployed screenshots are in `screenshots/deployed-home.png` and `screenshots/deployed-about.png`.
+
+#### Steps I followed
+
+1. **Prepped settings.py for production.** Added a check for the `RENDER` env var. When that's set I turn `DEBUG` off, lock `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS` to the hostname Render injects in `RENDER_EXTERNAL_HOSTNAME`, and let `SECRET_KEY` be overridden by an env var. Also added WhiteNoise to `MIDDLEWARE` and set `STATIC_ROOT` so the About page CSS would actually load in prod.
+2. **Wrote `build.sh`.** It runs `pip install -r requirements.txt`, then `cd mysite && collectstatic --noinput && migrate`, then a small Python block that seeds three messages on first deploy so the home page isn't empty. Made it executable with `chmod +x build.sh`.
+3. **Pushed to GitHub.** Made a public repo at `alexpicon/breakout10-django`, then `git init -b main`, `git add -A`, commit, push.
+4. **Created the Render Web Service.** From the dashboard: **+ New** -> **Web Service**. The first time I tried, the GitHub tab didn't show my repo because Render's GitHub App only sees repos you specifically allow. I switched to the **Public Git Repository** tab and pasted the repo URL, which was way faster. Settings I used:
+   - Name: `breakout10-django`
+   - Language: Python 3
+   - Branch: `main`
+   - Region: Oregon (US West)
+   - Build Command: `./build.sh`
+   - Start Command: `cd mysite && gunicorn mysite.wsgi`
+   - Instance Type: Free
+5. **Waited for the build.** Took about 2 minutes. Logs showed pip installing, collectstatic copying 130 static files, migrations running, the seed block creating the messages, then gunicorn starting up. Green "Live" badge appeared.
+6. **Verified.** Both `/` and `/about/` returned 200, and the home page showed the seeded messages including "Hello from Django MVC, deployed on Render!"
+
+#### Stuff I had to deal with
+
+- Render auto-filled the Build and Start commands wrong because it detected Django and guessed `pip install -r requirements.txt` and `gunicorn app:app`. Had to overwrite both.
+- Free tier asks for a credit card even though it's free, which threw me off. Used a virtual card with a low limit so it can't get charged.
+- Free tier instances spin down after 15 minutes of inactivity, so the first request after a while takes 50ish seconds to wake up. Fine for a demo, would not work for a real site.
