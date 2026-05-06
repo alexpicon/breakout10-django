@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Django MVC Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            max-width: 720px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+        header {
+            border-bottom: 2px solid #4f46e5;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        h1 { color: #4f46e5; margin-bottom: 0.25rem; }
+        nav a {
+            margin-right: 1rem;
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        nav a:hover { text-decoration: underline; }
+        .meta { color: #6b7280; font-size: 0.9rem; }
+        ul { padding-left: 1.25rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About This Project</h1>
+        <p class="meta">CPSC 5240 — Breakout #10 — Django MVC Demo</p>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/admin/">Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        <p>
+            This is a small Django application built to demonstrate the
+            Model–View–Template (MVT) pattern, Django's take on classic MVC.
+        </p>
+
+        <h2>How the layers map</h2>
+        <ul>
+            <li><strong>Model</strong> — <code>main/models.py</code> defines a <code>Message</code> with a single text field, persisted to SQLite.</li>
+            <li><strong>View</strong> — <code>main/views.py</code> contains the request-handling functions: <code>home</code> lists every message, <code>about</code> renders this page.</li>
+            <li><strong>Template</strong> — <code>main/templates/main/about.html</code> is this HTML file, rendered by the <code>about</code> view.</li>
+            <li><strong>Controller / URL routing</strong> — <code>mysite/urls.py</code> wires URL paths to views.</li>
+        </ul>
+
+        <h2>Author</h2>
+        <p>Built by Alex for CPSC 5240, Spring Quarter 2026.</p>
+    </main>
+</body>
+</html>
